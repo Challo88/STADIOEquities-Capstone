@@ -1,0 +1,42 @@
+# Experiment Configuration
+experiment:
+  name: account_activation_prediction
+  target_variable: activated_30day_flag
+  activation_window_days: 30
+
+data_split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  stratify_by: activated_30day_flag
+  time_based_split: true  # Use chronological split
+
+models:
+  - name: logistic_regression
+    class: LogisticRegression
+    params:
+      max_iter: 1000
+      class_weight: balanced
+
+  - name: random_forest
+    class: RandomForestClassifier
+    params:
+      n_estimators: 200
+      max_depth: 10
+      class_weight: balanced
+
+  - name: xgboost
+    class: XGBClassifier
+    params:
+      n_estimators: 200
+      max_depth: 6
+      learning_rate: 0.1
+      scale_pos_weight: 1
+
+evaluation:
+  primary_metric: auc_roc
+  secondary_metrics:
+    - precision
+    - recall
+    - f1_score
+    - lift_top_decile
