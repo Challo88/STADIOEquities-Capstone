@@ -3,6 +3,7 @@
 **Module:** CAP182 — Capstone (School of Information Technology)
 **Client:** STADIOEquities (Retail Investing & Fintech)
 **Project Title:** Predicting Account Activation to Reduce the Registration-to-Deposit Funnel Leakage
+**Student:** Charlton Allen (26305072)
 
 ---
 
