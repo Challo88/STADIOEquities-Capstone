@@ -1,15 +1,88 @@
-# STADIOEquities Capstone Project — SS1 Submission
+# STADIOEquities Capstone Project
 
 **Module:** CAP182 — Capstone (School of Information Technology)
-
 **Client:** STADIOEquities (Retail Investing & Fintech)
-
 **Project Title:** Predicting Account Activation to Reduce the Registration-to-Deposit Funnel Leakage
+**Repository:** https://github.com/Challo88/STADIOEquities-Capstone
 
-**Student:** Charlton Allen (26305072)
+This repository contains both submissions:
 
+* **SS1** — Motivation, problem statement, data request and RAAIDD log (below).
+* **SS2** — A viability proof of the SS1 approach on a **public** dataset, with
+  full modelling code, results and recommendations
+  ([jump to SS2](#ss2--viability-proof-on-a-public-dataset)).
 
 ---
+
+# SS2 — Viability Proof on a Public Dataset
+
+The client was not yet ready to release sensitive internal data, so SS2 proves
+the SS1 modelling approach on a publicly available analogue: the **UCI Bank
+Marketing dataset** (Moro, Cortez & Rita, 2014). Predicting whether a bank client
+**subscribes a term deposit** after a campaign is a direct public stand-in for
+predicting whether a STADIOEquities account **makes its first deposit
+(activates)** — both are imbalanced binary-classification problems driven by
+demographic, engagement and campaign features.
+
+## Deliverables & document map
+
+| Part | Deliverable | Link |
+|------|-------------|------|
+| A | Related work & dataset description (4 tables) | [`literature_review/Part_A_Related_Work_and_Data.docx`](literature_review/Part_A_Related_Work_and_Data.docx) · [PDF](literature_review/Part_A_Related_Work_and_Data.pdf) |
+| B | Preprocessing | [`Preprocessing.MD`](Preprocessing.MD) → [`src/preprocessing.py`](src/preprocessing.py) |
+| B | Feature engineering | [`FeatureEngineering.MD`](FeatureEngineering.MD) → [`src/feature_engineering.py`](src/feature_engineering.py) |
+| B | Model 1 (Logistic Regression) | [`Model1.MD`](Model1.MD) → [`src/train_model1_logreg.py`](src/train_model1_logreg.py) |
+| B | Model 2 (XGBoost) | [`Model2.MD`](Model2.MD) → [`src/train_model2_xgboost.py`](src/train_model2_xgboost.py) |
+| C | Model 1 performance | [`Model1Performance.MD`](Model1Performance.MD) → [`src/evaluate_model1.py`](src/evaluate_model1.py) |
+| C | Model 2 performance | [`Model2Performance.MD`](Model2Performance.MD) → [`src/evaluate_model2.py`](src/evaluate_model2.py) |
+| C | Model comparison | [`Comparison.MD`](Comparison.MD) → [`src/compare_models.py`](src/compare_models.py) |
+| D | Recommendations report (~900 words) | [`reports/Part_D_Recommendations.docx`](reports/Part_D_Recommendations.docx) · [PDF](reports/Part_D_Recommendations.pdf) |
+
+## Public dataset
+
+* **Name:** UCI Bank Marketing (`bank-additional-full.csv`)
+* **Instances:** 41,188 · **Input features:** 20 (+1 target) · **Classes:** 2
+* **Positive rate:** 11.27% (class imbalance)
+* **Source:** UCI Machine Learning Repository, dataset 222 — https://archive.ics.uci.edu/dataset/222/bank+marketing
+* Place the CSV at `datasets/raw/bank-additional-full.csv` (already included).
+
+## How to reproduce
+
+```bash
+pip install -r experimental_setup/requirements.txt
+cd src
+python preprocessing.py            # 1. clean + stratified 70/15/15 split
+python feature_engineering.py      # 2. derive features + encode
+python train_model1_logreg.py      # 3. train Model 1
+python train_model2_xgboost.py     # 4. train Model 2
+python evaluate_model1.py          # 5. Model 1 test performance
+python evaluate_model2.py          # 6. Model 2 test performance
+python compare_models.py           # 7. head-to-head + statistical tests
+```
+
+To regenerate the reports:
+* Word: `node reports/build_part_a_docx.js` and `node reports/build_part_d_docx.js`
+* PDF: `python reports/build_part_a_pdf.py` and `python reports/build_part_d_pdf.py`
+
+## Headline results (held-out test set, 6,179 accounts)
+
+| Metric | Logistic Regression | XGBoost |
+|--------|--------------------:|--------:|
+| ROC-AUC | 0.800 | **0.812** |
+| PR-AUC | 0.461 | **0.485** |
+| F1 | 0.505 | **0.524** |
+| Recall | 0.575 | **0.595** |
+| Top-decile lift | 4.49× | **4.58×** |
+
+Both models clear the SS1 success criteria (ROC-AUC ≥ 0.75 and top-decile
+lift ≥ 2×). XGBoost is significantly better on the test set (McNemar p = 0.009;
+bootstrap AUC-difference 95% CI [+0.004, +0.020]), though the margin is modest and
+not significant under 5-fold cross-validation (paired t-test p = 0.20). See
+[`Comparison.MD`](Comparison.MD).
+
+---
+
+# SS1 — Motivation, Problem Statement & Data Request
 
 ## Part A — Motivation
 
@@ -23,8 +96,6 @@ This project will build a supervised machine learning classification model that 
 2. **"Understand every client's investing style"** — Group clients by how they actually behave so content, nudges, and product suggestions finally fit the person receiving them.
 
 Beyond the immediate activation benefit, the same modelling framework can be extended to predict long-term engagement, churn, and premium subscription uptake — forming a foundation for a data-led growth strategy that turns STADIOEquities' behavioural data into a sustained competitive advantage.
-
----
 
 ## Part B — Problem Statement
 
@@ -54,31 +125,50 @@ The model is considered successful if it achieves:
 
 ## Repository Structure
 
-This repository contains all code, data, models, and results for the STADIOEquities account activation prediction project.
-
 ```
 STADIOEquities-Capstone/
-├── README.md                     # This file — project overview, motivation, problem statement, RAAIDD log
-├── datasets/                     # Raw and processed data files
-│   ├── raw/                      # Original data as received from client
-│   └── processed/                # Cleaned, transformed data ready for modelling
-├── models/                       # Trained model artifacts and model metadata
-├── experimental_setup/           # Environment configuration, requirements, and experiment tracking
-│   ├── requirements.txt          # Python package dependencies
-│   └── config.yaml               # Experiment parameters (train/test split, model hyperparameters)
-├── experimental_results/         # Model evaluation outputs, metrics, and comparison reports
-├── statistical_scripts/          # Statistical analysis, EDA, and comparison scripts
-│   ├── eda.py                    # Exploratory Data Analysis
-│   └── model_comparison.py       # Model comparison and statistical tests
-└── visualization_scripts/        # Visualization and dashboard generation scripts
-    └── plots.py                  # Feature importance, ROC curves, confusion matrices
+├── README.md                       # This file (SS1 + SS2)
+├── data_request.pdf                # SS1 Part C — data requested from the client
+│
+├── Preprocessing.MD                # SS2 Part B docs (link to src/)
+├── FeatureEngineering.MD
+├── Model1.MD
+├── Model2.MD
+├── Model1Performance.MD            # SS2 Part C docs
+├── Model2Performance.MD
+├── Comparison.MD
+│
+├── datasets/
+│   ├── raw/bank-additional-full.csv    # public dataset (SS2)
+│   └── processed/                      # generated splits (train/val/test [+ _fe])
+├── src/                            # SS2 pipeline scripts
+│   ├── pipeline_utils.py           #   shared loading / split / feature defs
+│   ├── eval_utils.py               #   shared metrics + plotting
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── train_model1_logreg.py
+│   ├── train_model2_xgboost.py
+│   ├── evaluate_model1.py
+│   ├── evaluate_model2.py
+│   └── compare_models.py
+├── models/                         # saved model artifacts (.joblib)
+├── experimental_setup/
+│   ├── requirements.txt
+│   └── config.yaml
+├── experimental_results/           # metrics (.json/.csv) + figures/
+├── literature_review/
+│   └── Part_A_Related_Work_and_Data.pdf
+├── reports/
+│   ├── Part_D_Recommendations.pdf
+│   ├── build_part_a_pdf.py
+│   └── build_part_d_pdf.py
+├── statistical_scripts/            # SS1 placeholders (eda.py, model_comparison.py)
+└── visualization_scripts/          # SS1 placeholder (plots.py)
 ```
 
 ---
 
 ## Part E — RAAIDD Log
-
-### RAAIDD Log
 
 | RAAIDD | Description |
 |--------|-------------|
@@ -108,4 +198,4 @@ STADIOEquities-Capstone/
 
 ---
 
-*Repository created for SS1 Capstone Project submission.*
+*SS1 submission created 2026-09-05. SS2 submission adds the public-dataset viability proof.*
