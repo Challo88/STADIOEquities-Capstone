@@ -1,0 +1,108 @@
+Total model features after encoding: 77
+
+Numeric features (12):
+  - age
+  - campaign
+  - pdays
+  - previous
+  - emp.var.rate
+  - cons.price.idx
+  - cons.conf.idx
+  - euribor3m
+  - nr.employed
+  - was_contacted_before
+  - prev_contact_success
+  - contacted_and_success
+
+Categorical features (12), one-hot encoded:
+  - job
+  - marital
+  - education
+  - default
+  - housing
+  - loan
+  - contact
+  - month
+  - day_of_week
+  - poutcome
+  - age_group
+  - campaign_intensity
+
+Full expanded feature vector:
+  age
+  campaign
+  pdays
+  previous
+  emp.var.rate
+  cons.price.idx
+  cons.conf.idx
+  euribor3m
+  nr.employed
+  was_contacted_before
+  prev_contact_success
+  contacted_and_success
+  job_admin.
+  job_blue-collar
+  job_entrepreneur
+  job_housemaid
+  job_management
+  job_retired
+  job_self-employed
+  job_services
+  job_student
+  job_technician
+  job_unemployed
+  job_unknown
+  marital_divorced
+  marital_married
+  marital_single
+  marital_unknown
+  education_basic.4y
+  education_basic.6y
+  education_basic.9y
+  education_high.school
+  education_illiterate
+  education_professional.course
+  education_university.degree
+  education_unknown
+  default_no
+  default_unknown
+  default_yes
+  housing_no
+  housing_unknown
+  housing_yes
+  loan_no
+  loan_unknown
+  loan_yes
+  contact_cellular
+  contact_telephone
+  month_apr
+  month_aug
+  month_dec
+  month_jul
+  month_jun
+  month_mar
+  month_may
+  month_nov
+  month_oct
+  month_sep
+  day_of_week_fri
+  day_of_week_mon
+  day_of_week_thu
+  day_of_week_tue
+  day_of_week_wed
+  poutcome_failure
+  poutcome_nonexistent
+  poutcome_success
+  age_group_18-24
+  age_group_25-34
+  age_group_35-44
+  age_group_45-54
+  age_group_55-64
+  age_group_65+
+  age_group_nan
+  campaign_intensity_1
+  campaign_intensity_2
+  campaign_intensity_3
+  campaign_intensity_4-5
+  campaign_intensity_6+
