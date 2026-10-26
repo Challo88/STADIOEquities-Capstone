@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 893a95ae056815795278ed2ed1c885975d26f00d Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit (initial): Add client data extract, requirements and project README for SS3 Part B
+893a95ae056815795278ed2ed1c885975d26f00d 3728275bbbc4d2843eea75b5bb58efdd511a05ab Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: add component 1 — dataset loading
+3728275bbbc4d2843eea75b5bb58efdd511a05ab e8e6a255e8face3b45bfe95e2aa27b6a42bcd0a7 Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: add component 2 — dataset preprocessing and train/val/test split
+e8e6a255e8face3b45bfe95e2aa27b6a42bcd0a7 12d07a4ba3a603caf672943ea9722b3752047351 Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: add component 3 — model training with justified hyper-parameters
+12d07a4ba3a603caf672943ea9722b3752047351 8fb4a4e7a9580b046e93dea6d0a5f7baeeb8fddc Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: add component 4 — model validation on unseen test set
+8fb4a4e7a9580b046e93dea6d0a5f7baeeb8fddc 808915962da987f7f54a05773d140afaa56f18de Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: add component 5 — results visualisation
+808915962da987f7f54a05773d140afaa56f18de 2e4409ad6b6748fb94079d3f1c8ff3876abb017a Allen Charlton <allen.charlton@gmail.com> 1793043716 +0200	commit: SS3_PartB: execute full notebook and store model + metrics outputs
+2e4409ad6b6748fb94079d3f1c8ff3876abb017a d67f87d4d4da1e6052d60fbfde7c201ea6fc5c0c Allen Charlton <allen.charlton@gmail.com> 1793043739 +0200	commit: Add push instructions for SS3 Part B
