@@ -1,0 +1,21 @@
+,0
+num__kyc_completed_flag,0.1933526
+cat__kyc_status_Completed,0.14122151
+num__deposit_page_views,0.04647186
+cat__kyc_status_In Progress,0.023550631
+num__deposit_funnel_views,0.018089471
+num__kyc_time_to_complete_hours,0.016353555
+cat__kyc_status_Not Started,0.015388064
+num__engaged_sessions,0.014555522
+num__num_sessions_first_7_days,0.010889528
+cat__kyc_status_Rejected,0.010874333
+cat__comms_opened_6,0.010863095
+num__total_events,0.010208227
+num__onboarding_steps_completed,0.009668214
+num__onboarding_completion_ratio,0.009095085
+cat__referral_code_infrequent_sklearn,0.008576345
+cat__comms_opened_4,0.008557014
+cat__age_group_18-24,0.0083905
+cat__deepest_onboarding_screen_reached_OnboardingWelcome,0.008330843
+num__any_premium_interest,0.008293815
+cat__province_Ec,0.008286673
