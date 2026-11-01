@@ -75,4 +75,4 @@ The notebook writes the fitted model (`outputs/xgboost_activation_model.json`) a
 
 ## Video presentation (Part C)
 
-> **Add your video link here:** `[LINK TO 10–12 MIN VIDEO PRESENTATION]`
+> **Video link here:** `(https://stadiomultiversitymy.sharepoint.com/:f:/g/personal/26305072_stadio_ac_za/IgB4MrlDrPdRpUK48CaZ2u7ASBF_Qz0P4jhbRq4id1F5Go?e=9DD9ZR )`
